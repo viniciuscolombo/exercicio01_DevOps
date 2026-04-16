@@ -65,7 +65,6 @@ jobs:
       - name: Analyze Trivy results
         run: |
           if [ -f trivy-results.json ]; then
-            # Os pontos de interrogação (?) são cruciais aqui
             VULN_COUNT_MEDIUM=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "MEDIUM")] | length' trivy-results.json)
             echo "Quantidade de vulnerabilidades médias: $VULN_COUNT_MEDIUM"
           fi
@@ -77,8 +76,8 @@ jobs:
           if [ "$VULN_COUNT_MEDIUM" -gt 5 ]; then
              echo "Pipeline bloqueada: mais de 5 vulnerabilidades médias encontradas."
              exit 1
-           fi
+          fi
           if [ "$VULN_COUNT_HIGH" -gt 5 ]; then
              echo "Pipeline bloqueada: mais de 5 vulnerabilidades altas encontradas."
              exit 1
-           fi
+          fi
