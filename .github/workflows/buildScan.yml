@@ -65,6 +65,7 @@ jobs:
       - name: Analyze Trivy results
         run: |
           if [ -f trivy-results.json ]; then
+            # Os pontos de interrogação (?) são cruciais aqui
             VULN_COUNT_MEDIUM=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "MEDIUM")] | length' trivy-results.json)
             echo "Quantidade de vulnerabilidades médias: $VULN_COUNT_MEDIUM"
           fi
