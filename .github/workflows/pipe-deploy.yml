@@ -49,7 +49,7 @@ jobs:
           # Aplica deployment.yaml e service.yaml do diretÃ³rio k8s/
           kubectl apply -f k8s/ -n ${{ vars.K8S_NAMESPACE }}
 
-      # - name: Aguardar rollout do deployment
+      # - name: Aguardar rollout do deployment 
       #   run: |
       #     # Verifica status do rollout (timeout 5min)
       #     kubectl rollout status deployment/satc-devops -n ${{ vars.K8S_NAMESPACE }} --timeout=300s
